@@ -139,9 +139,6 @@ func (s *clientConnections) openConnection(ctx context.Context, destAddr net.Add
 	}
 
 	quicConfig := &quic.Config{
-		KeepAlivePeriod:      0,
-		HandshakeIdleTimeout: time.Second * 8,
-		MaxIdleTimeout:       time.Second * 300,
 		Tracer: func(ctx context.Context, p logging.Perspective, ci quic.ConnectionID) *logging.ConnectionTracer {
 			return qlog.NewConnectionTracer(&QlogWriter{connID: ci}, p, ci)
 		},
