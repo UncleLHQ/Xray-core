@@ -254,7 +254,6 @@ func (h *Handler) makeVirtualTun(bind *netBindClient) (Tunnel, error) {
 	return t, nil
 }
 
-
 // serialize the config into an IPC request
 func (h *Handler) createIPCRequest(bind *netBindClient, conf *DeviceConfig) string {
 	var request strings.Builder

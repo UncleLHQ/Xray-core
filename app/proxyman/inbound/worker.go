@@ -60,7 +60,7 @@ func (w *tcpWorker) callback(conn stat.Connection) {
 	sid := session.NewID()
 	ctx = session.ContextWithID(ctx, sid)
 
-	var outbound = &session.Outbound{}
+	outbound := &session.Outbound{}
 	if w.recvOrigDest {
 		var dest net.Destination
 		switch getTProxyType(w.stream) {

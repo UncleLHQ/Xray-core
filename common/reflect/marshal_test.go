@@ -56,7 +56,6 @@ func TestMashalStruct(t *testing.T) {
 }
 
 func TestMarshalConfigJson(t *testing.T) {
-
 	buf := bytes.NewBufferString(getConfig())
 	config, err := iserial.DecodeJSONConfig(buf)
 	if err != nil {

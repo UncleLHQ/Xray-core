@@ -36,7 +36,7 @@ func init() {
 	}
 	rand.Read(BaseKey)
 	go func() {
-		time.Sleep(100 * time.Millisecond) // this is not nice, but need to give some time for Android to setup ENV 
+		time.Sleep(100 * time.Millisecond) // this is not nice, but need to give some time for Android to setup ENV
 		if raw := platform.NewEnvFlag(platform.XUDPBaseKey).GetValue(func() string { return "" }); raw != "" {
 			if BaseKey, _ = base64.RawURLEncoding.DecodeString(raw); len(BaseKey) == 32 {
 				return

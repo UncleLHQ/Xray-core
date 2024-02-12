@@ -500,7 +500,6 @@ func (c *Config) Override(o *Config, fn string) {
 				c.InboundConfigs = append(c.InboundConfigs, o.InboundConfigs[i])
 				newError("[", fn, "] appended inbound with tag: ", o.InboundConfigs[i].Tag).AtInfo().WriteToLog()
 			}
-
 		}
 	}
 

@@ -149,7 +149,6 @@ func (m *Manager) RemoveHandler(ctx context.Context, tag string) error {
 
 // Select implements outbound.HandlerSelector.
 func (m *Manager) Select(selectors []string) []string {
-
 	key := strings.Join(selectors, ",")
 	if cache, ok := m.tagsCache.Load(key); ok {
 		return cache.([]string)
