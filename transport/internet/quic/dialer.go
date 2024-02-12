@@ -5,9 +5,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/quic-go/quic-go"
-	"github.com/quic-go/quic-go/logging"
-	"github.com/quic-go/quic-go/qlog"
+	qc "github.com/metacubex/mihomo/transport/tuic/common"
+	"github.com/metacubex/quic-go"
+	"github.com/metacubex/quic-go/logging"
+	"github.com/metacubex/quic-go/qlog"
+
 	"github.com/xtls/xray-core/common"
 	"github.com/xtls/xray-core/common/net"
 	"github.com/xtls/xray-core/common/task"
@@ -170,7 +172,7 @@ func (s *clientConnections) openConnection(ctx context.Context, destAddr net.Add
 		sysConn.Close()
 		return nil, err
 	}
-
+	qc.SetCongestionController(conn, "bbr", 32)
 	context := &connectionContext{
 		conn:    conn,
 		rawConn: sysConn,
@@ -205,7 +207,7 @@ func Dial(ctx context.Context, dest net.Destination, streamSettings *internet.Me
 			IP:   dest.Address.IP(),
 			Port: int(dest.Port),
 		}
-	}  else {
+	} else {
 		dialerIp := internet.DestIpAddress()
 		if dialerIp != nil {
 			destAddr = &net.UDPAddr{

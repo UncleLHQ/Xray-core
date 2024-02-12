@@ -1,6 +1,6 @@
 package quic
 
-import "github.com/quic-go/quic-go"
+import "github.com/metacubex/quic-go"
 
 type QlogWriter struct {
 	connID quic.ConnectionID
